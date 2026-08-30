@@ -15,6 +15,9 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as ArtisanIndexRouteImport } from './routes/artisan.index'
 import { Route as ArtisanCreateRouteImport } from './routes/artisan.create'
+import { Route as ArtisanOrdersRouteImport } from './routes/artisan.orders'
+import { Route as ArtisanProductsRouteImport } from './routes/artisan.products'
+import { Route as ArtisanStoreRouteImport } from './routes/artisan.store'
 import { Route as ProductProductIdRouteImport } from './routes/product.$productId'
 import { Route as StoreSlugRouteImport } from './routes/store.$slug'
 
@@ -48,6 +51,21 @@ const ArtisanCreateRoute = ArtisanCreateRouteImport.update({
   path: '/create',
   getParentRoute: () => ArtisanRoute,
 } as any)
+const ArtisanOrdersRoute = ArtisanOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => ArtisanRoute,
+} as any)
+const ArtisanProductsRoute = ArtisanProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
+  getParentRoute: () => ArtisanRoute,
+} as any)
+const ArtisanStoreRoute = ArtisanStoreRouteImport.update({
+  id: '/store',
+  path: '/store',
+  getParentRoute: () => ArtisanRoute,
+} as any)
 const ProductProductIdRoute = ProductProductIdRouteImport.update({
   id: '/product/$productId',
   path: '/product/$productId',
@@ -65,6 +83,9 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/explore': typeof ExploreRoute
   '/artisan/create': typeof ArtisanCreateRoute
+  '/artisan/orders': typeof ArtisanOrdersRoute
+  '/artisan/products': typeof ArtisanProductsRoute
+  '/artisan/store': typeof ArtisanStoreRoute
   '/product/$productId': typeof ProductProductIdRoute
   '/store/$slug': typeof StoreSlugRoute
   '/artisan/': typeof ArtisanIndexRoute
@@ -74,6 +95,9 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/explore': typeof ExploreRoute
   '/artisan/create': typeof ArtisanCreateRoute
+  '/artisan/orders': typeof ArtisanOrdersRoute
+  '/artisan/products': typeof ArtisanProductsRoute
+  '/artisan/store': typeof ArtisanStoreRoute
   '/product/$productId': typeof ProductProductIdRoute
   '/store/$slug': typeof StoreSlugRoute
   '/artisan': typeof ArtisanIndexRoute
@@ -85,6 +109,9 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/explore': typeof ExploreRoute
   '/artisan/create': typeof ArtisanCreateRoute
+  '/artisan/orders': typeof ArtisanOrdersRoute
+  '/artisan/products': typeof ArtisanProductsRoute
+  '/artisan/store': typeof ArtisanStoreRoute
   '/product/$productId': typeof ProductProductIdRoute
   '/store/$slug': typeof StoreSlugRoute
   '/artisan/': typeof ArtisanIndexRoute
@@ -97,6 +124,9 @@ export interface FileRouteTypes {
     | '/auth'
     | '/explore'
     | '/artisan/create'
+    | '/artisan/orders'
+    | '/artisan/products'
+    | '/artisan/store'
     | '/product/$productId'
     | '/store/$slug'
     | '/artisan/'
@@ -106,6 +136,9 @@ export interface FileRouteTypes {
     | '/auth'
     | '/explore'
     | '/artisan/create'
+    | '/artisan/orders'
+    | '/artisan/products'
+    | '/artisan/store'
     | '/product/$productId'
     | '/store/$slug'
     | '/artisan'
@@ -116,6 +149,9 @@ export interface FileRouteTypes {
     | '/auth'
     | '/explore'
     | '/artisan/create'
+    | '/artisan/orders'
+    | '/artisan/products'
+    | '/artisan/store'
     | '/product/$productId'
     | '/store/$slug'
     | '/artisan/'
@@ -174,6 +210,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArtisanCreateRouteImport
       parentRoute: typeof ArtisanRoute
     }
+    '/artisan/orders': {
+      id: '/artisan/orders'
+      path: '/orders'
+      fullPath: '/artisan/orders'
+      preLoaderRoute: typeof ArtisanOrdersRouteImport
+      parentRoute: typeof ArtisanRoute
+    }
+    '/artisan/products': {
+      id: '/artisan/products'
+      path: '/products'
+      fullPath: '/artisan/products'
+      preLoaderRoute: typeof ArtisanProductsRouteImport
+      parentRoute: typeof ArtisanRoute
+    }
+    '/artisan/store': {
+      id: '/artisan/store'
+      path: '/store'
+      fullPath: '/artisan/store'
+      preLoaderRoute: typeof ArtisanStoreRouteImport
+      parentRoute: typeof ArtisanRoute
+    }
     '/product/$productId': {
       id: '/product/$productId'
       path: '/product/$productId'
@@ -193,11 +250,17 @@ declare module '@tanstack/react-router' {
 
 interface ArtisanRouteChildren {
   ArtisanCreateRoute: typeof ArtisanCreateRoute
+  ArtisanOrdersRoute: typeof ArtisanOrdersRoute
+  ArtisanProductsRoute: typeof ArtisanProductsRoute
+  ArtisanStoreRoute: typeof ArtisanStoreRoute
   ArtisanIndexRoute: typeof ArtisanIndexRoute
 }
 
 const ArtisanRouteChildren: ArtisanRouteChildren = {
   ArtisanCreateRoute: ArtisanCreateRoute,
+  ArtisanOrdersRoute: ArtisanOrdersRoute,
+  ArtisanProductsRoute: ArtisanProductsRoute,
+  ArtisanStoreRoute: ArtisanStoreRoute,
   ArtisanIndexRoute: ArtisanIndexRoute,
 }
 
