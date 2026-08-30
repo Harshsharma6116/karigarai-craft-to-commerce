@@ -10,33 +10,160 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ArtisanRouteImport } from './routes/artisan'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ExploreRouteImport } from './routes/explore'
+import { Route as ArtisanIndexRouteImport } from './routes/artisan.index'
+import { Route as ArtisanCreateRouteImport } from './routes/artisan.create'
+import { Route as ArtisanOrdersRouteImport } from './routes/artisan.orders'
+import { Route as ArtisanProductsRouteImport } from './routes/artisan.products'
+import { Route as ArtisanStoreRouteImport } from './routes/artisan.store'
+import { Route as ProductProductIdRouteImport } from './routes/product.$productId'
+import { Route as StoreSlugRouteImport } from './routes/store.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ArtisanRoute = ArtisanRouteImport.update({
+  id: '/artisan',
+  path: '/artisan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExploreRoute = ExploreRouteImport.update({
+  id: '/explore',
+  path: '/explore',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArtisanIndexRoute = ArtisanIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ArtisanRoute,
+} as any)
+const ArtisanCreateRoute = ArtisanCreateRouteImport.update({
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => ArtisanRoute,
+} as any)
+const ArtisanOrdersRoute = ArtisanOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => ArtisanRoute,
+} as any)
+const ArtisanProductsRoute = ArtisanProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
+  getParentRoute: () => ArtisanRoute,
+} as any)
+const ArtisanStoreRoute = ArtisanStoreRouteImport.update({
+  id: '/store',
+  path: '/store',
+  getParentRoute: () => ArtisanRoute,
+} as any)
+const ProductProductIdRoute = ProductProductIdRouteImport.update({
+  id: '/product/$productId',
+  path: '/product/$productId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoreSlugRoute = StoreSlugRouteImport.update({
+  id: '/store/$slug',
+  path: '/store/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/artisan': typeof ArtisanRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/explore': typeof ExploreRoute
+  '/artisan/create': typeof ArtisanCreateRoute
+  '/artisan/orders': typeof ArtisanOrdersRoute
+  '/artisan/products': typeof ArtisanProductsRoute
+  '/artisan/store': typeof ArtisanStoreRoute
+  '/product/$productId': typeof ProductProductIdRoute
+  '/store/$slug': typeof StoreSlugRoute
+  '/artisan/': typeof ArtisanIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/explore': typeof ExploreRoute
+  '/artisan/create': typeof ArtisanCreateRoute
+  '/artisan/orders': typeof ArtisanOrdersRoute
+  '/artisan/products': typeof ArtisanProductsRoute
+  '/artisan/store': typeof ArtisanStoreRoute
+  '/product/$productId': typeof ProductProductIdRoute
+  '/store/$slug': typeof StoreSlugRoute
+  '/artisan': typeof ArtisanIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/artisan': typeof ArtisanRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/explore': typeof ExploreRoute
+  '/artisan/create': typeof ArtisanCreateRoute
+  '/artisan/orders': typeof ArtisanOrdersRoute
+  '/artisan/products': typeof ArtisanProductsRoute
+  '/artisan/store': typeof ArtisanStoreRoute
+  '/product/$productId': typeof ProductProductIdRoute
+  '/store/$slug': typeof StoreSlugRoute
+  '/artisan/': typeof ArtisanIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/artisan'
+    | '/auth'
+    | '/explore'
+    | '/artisan/create'
+    | '/artisan/orders'
+    | '/artisan/products'
+    | '/artisan/store'
+    | '/product/$productId'
+    | '/store/$slug'
+    | '/artisan/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/explore'
+    | '/artisan/create'
+    | '/artisan/orders'
+    | '/artisan/products'
+    | '/artisan/store'
+    | '/product/$productId'
+    | '/store/$slug'
+    | '/artisan'
+  id:
+    | '__root__'
+    | '/'
+    | '/artisan'
+    | '/auth'
+    | '/explore'
+    | '/artisan/create'
+    | '/artisan/orders'
+    | '/artisan/products'
+    | '/artisan/store'
+    | '/product/$productId'
+    | '/store/$slug'
+    | '/artisan/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ArtisanRoute: typeof ArtisanRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  ExploreRoute: typeof ExploreRoute
+  ProductProductIdRoute: typeof ProductProductIdRoute
+  StoreSlugRoute: typeof StoreSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +175,105 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/artisan': {
+      id: '/artisan'
+      path: '/artisan'
+      fullPath: '/artisan'
+      preLoaderRoute: typeof ArtisanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore': {
+      id: '/explore'
+      path: '/explore'
+      fullPath: '/explore'
+      preLoaderRoute: typeof ExploreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/artisan/': {
+      id: '/artisan/'
+      path: '/'
+      fullPath: '/artisan/'
+      preLoaderRoute: typeof ArtisanIndexRouteImport
+      parentRoute: typeof ArtisanRoute
+    }
+    '/artisan/create': {
+      id: '/artisan/create'
+      path: '/create'
+      fullPath: '/artisan/create'
+      preLoaderRoute: typeof ArtisanCreateRouteImport
+      parentRoute: typeof ArtisanRoute
+    }
+    '/artisan/orders': {
+      id: '/artisan/orders'
+      path: '/orders'
+      fullPath: '/artisan/orders'
+      preLoaderRoute: typeof ArtisanOrdersRouteImport
+      parentRoute: typeof ArtisanRoute
+    }
+    '/artisan/products': {
+      id: '/artisan/products'
+      path: '/products'
+      fullPath: '/artisan/products'
+      preLoaderRoute: typeof ArtisanProductsRouteImport
+      parentRoute: typeof ArtisanRoute
+    }
+    '/artisan/store': {
+      id: '/artisan/store'
+      path: '/store'
+      fullPath: '/artisan/store'
+      preLoaderRoute: typeof ArtisanStoreRouteImport
+      parentRoute: typeof ArtisanRoute
+    }
+    '/product/$productId': {
+      id: '/product/$productId'
+      path: '/product/$productId'
+      fullPath: '/product/$productId'
+      preLoaderRoute: typeof ProductProductIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/store/$slug': {
+      id: '/store/$slug'
+      path: '/store/$slug'
+      fullPath: '/store/$slug'
+      preLoaderRoute: typeof StoreSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface ArtisanRouteChildren {
+  ArtisanCreateRoute: typeof ArtisanCreateRoute
+  ArtisanOrdersRoute: typeof ArtisanOrdersRoute
+  ArtisanProductsRoute: typeof ArtisanProductsRoute
+  ArtisanStoreRoute: typeof ArtisanStoreRoute
+  ArtisanIndexRoute: typeof ArtisanIndexRoute
+}
+
+const ArtisanRouteChildren: ArtisanRouteChildren = {
+  ArtisanCreateRoute: ArtisanCreateRoute,
+  ArtisanOrdersRoute: ArtisanOrdersRoute,
+  ArtisanProductsRoute: ArtisanProductsRoute,
+  ArtisanStoreRoute: ArtisanStoreRoute,
+  ArtisanIndexRoute: ArtisanIndexRoute,
+}
+
+const ArtisanRouteWithChildren =
+  ArtisanRoute._addFileChildren(ArtisanRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ArtisanRoute: ArtisanRouteWithChildren,
+  AuthRoute: AuthRoute,
+  ExploreRoute: ExploreRoute,
+  ProductProductIdRoute: ProductProductIdRoute,
+  StoreSlugRoute: StoreSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
