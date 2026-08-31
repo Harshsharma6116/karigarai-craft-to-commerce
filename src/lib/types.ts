@@ -14,6 +14,8 @@ export interface Artisan {
   initials: string;
 }
 
+export type ProductStatus = "published" | "draft";
+
 export interface Product {
   id: string;
   artisanId: string;
@@ -33,6 +35,7 @@ export interface Product {
   craft: string;
   material: string;
   createdAt: string;
+  status: ProductStatus;
 }
 
 export type OrderStatus = "Pending" | "Confirmed" | "Packed" | "Shipped" | "Delivered";
@@ -70,4 +73,11 @@ export interface PriceBreakdown {
   complexity: number;
   market: number;
   margin: number;
+}
+
+export interface SessionUser {
+  role: Role;
+  name: string;
+  email: string;
+  artisanId?: string;
 }

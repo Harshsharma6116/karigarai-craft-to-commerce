@@ -53,7 +53,7 @@ export const artisans: Artisan[] = [
   },
 ];
 
-export const products: Product[] = [
+const rawProducts: Omit<Product, "status">[] = [
   {
     id: "p1",
     artisanId: "a1",
@@ -183,6 +183,11 @@ export const products: Product[] = [
     createdAt: "2026-05-02",
   },
 ];
+
+export const products: Product[] = rawProducts.map((p) => ({
+  ...p,
+  status: "published" as const,
+}));
 
 export const orders: Order[] = [
   {
