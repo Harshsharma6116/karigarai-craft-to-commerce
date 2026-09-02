@@ -14,6 +14,8 @@ import { Route as ArtisanRouteImport } from './routes/artisan'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as ArtisanIndexRouteImport } from './routes/artisan.index'
+import { Route as ArtisanAnalyticsRouteImport } from './routes/artisan.analytics'
+import { Route as ArtisanCoachRouteImport } from './routes/artisan.coach'
 import { Route as ArtisanCreateRouteImport } from './routes/artisan.create'
 import { Route as ArtisanOrdersRouteImport } from './routes/artisan.orders'
 import { Route as ArtisanProductsRouteImport } from './routes/artisan.products'
@@ -44,6 +46,16 @@ const ExploreRoute = ExploreRouteImport.update({
 const ArtisanIndexRoute = ArtisanIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => ArtisanRoute,
+} as any)
+const ArtisanAnalyticsRoute = ArtisanAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => ArtisanRoute,
+} as any)
+const ArtisanCoachRoute = ArtisanCoachRouteImport.update({
+  id: '/coach',
+  path: '/coach',
   getParentRoute: () => ArtisanRoute,
 } as any)
 const ArtisanCreateRoute = ArtisanCreateRouteImport.update({
@@ -82,6 +94,8 @@ export interface FileRoutesByFullPath {
   '/artisan': typeof ArtisanRouteWithChildren
   '/auth': typeof AuthRoute
   '/explore': typeof ExploreRoute
+  '/artisan/analytics': typeof ArtisanAnalyticsRoute
+  '/artisan/coach': typeof ArtisanCoachRoute
   '/artisan/create': typeof ArtisanCreateRoute
   '/artisan/orders': typeof ArtisanOrdersRoute
   '/artisan/products': typeof ArtisanProductsRoute
@@ -94,6 +108,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/explore': typeof ExploreRoute
+  '/artisan/analytics': typeof ArtisanAnalyticsRoute
+  '/artisan/coach': typeof ArtisanCoachRoute
   '/artisan/create': typeof ArtisanCreateRoute
   '/artisan/orders': typeof ArtisanOrdersRoute
   '/artisan/products': typeof ArtisanProductsRoute
@@ -108,6 +124,8 @@ export interface FileRoutesById {
   '/artisan': typeof ArtisanRouteWithChildren
   '/auth': typeof AuthRoute
   '/explore': typeof ExploreRoute
+  '/artisan/analytics': typeof ArtisanAnalyticsRoute
+  '/artisan/coach': typeof ArtisanCoachRoute
   '/artisan/create': typeof ArtisanCreateRoute
   '/artisan/orders': typeof ArtisanOrdersRoute
   '/artisan/products': typeof ArtisanProductsRoute
@@ -123,6 +141,8 @@ export interface FileRouteTypes {
     | '/artisan'
     | '/auth'
     | '/explore'
+    | '/artisan/analytics'
+    | '/artisan/coach'
     | '/artisan/create'
     | '/artisan/orders'
     | '/artisan/products'
@@ -135,6 +155,8 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/explore'
+    | '/artisan/analytics'
+    | '/artisan/coach'
     | '/artisan/create'
     | '/artisan/orders'
     | '/artisan/products'
@@ -148,6 +170,8 @@ export interface FileRouteTypes {
     | '/artisan'
     | '/auth'
     | '/explore'
+    | '/artisan/analytics'
+    | '/artisan/coach'
     | '/artisan/create'
     | '/artisan/orders'
     | '/artisan/products'
@@ -203,6 +227,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArtisanIndexRouteImport
       parentRoute: typeof ArtisanRoute
     }
+    '/artisan/analytics': {
+      id: '/artisan/analytics'
+      path: '/analytics'
+      fullPath: '/artisan/analytics'
+      preLoaderRoute: typeof ArtisanAnalyticsRouteImport
+      parentRoute: typeof ArtisanRoute
+    }
+    '/artisan/coach': {
+      id: '/artisan/coach'
+      path: '/coach'
+      fullPath: '/artisan/coach'
+      preLoaderRoute: typeof ArtisanCoachRouteImport
+      parentRoute: typeof ArtisanRoute
+    }
     '/artisan/create': {
       id: '/artisan/create'
       path: '/create'
@@ -249,6 +287,8 @@ declare module '@tanstack/react-router' {
 }
 
 interface ArtisanRouteChildren {
+  ArtisanAnalyticsRoute: typeof ArtisanAnalyticsRoute
+  ArtisanCoachRoute: typeof ArtisanCoachRoute
   ArtisanCreateRoute: typeof ArtisanCreateRoute
   ArtisanOrdersRoute: typeof ArtisanOrdersRoute
   ArtisanProductsRoute: typeof ArtisanProductsRoute
@@ -257,6 +297,8 @@ interface ArtisanRouteChildren {
 }
 
 const ArtisanRouteChildren: ArtisanRouteChildren = {
+  ArtisanAnalyticsRoute: ArtisanAnalyticsRoute,
+  ArtisanCoachRoute: ArtisanCoachRoute,
   ArtisanCreateRoute: ArtisanCreateRoute,
   ArtisanOrdersRoute: ArtisanOrdersRoute,
   ArtisanProductsRoute: ArtisanProductsRoute,
