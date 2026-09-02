@@ -22,7 +22,7 @@ import { monthlySeries, trafficSources } from "@/lib/data";
 import { inr, useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/artisan/analytics")({
-  component: Analytics;
+  component: Analytics,
 });
 
 const metrics = [
