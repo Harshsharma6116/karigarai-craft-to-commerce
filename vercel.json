@@ -1,5 +1,13 @@
 {
   "framework": "tanstack-start",
   "buildCommand": "bun run build",
-  "installCommand": "bun install"
+  "installCommand": "bun install",
+  "env": {
+    "NITRO_PRESET": "vercel"
+  },
+  "build": {
+    "env": {
+      "NITRO_PRESET": "vercel"
+    }
+  }
 }
